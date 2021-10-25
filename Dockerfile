@@ -9,3 +9,9 @@ LABEL org.label-schema.schema-version="1.0" \
       maintainer="Ricardo Tribaldos <rtribaldos@barustudio.com>"
 
 RUN apk add --update --no-cache openssh rsync
+
+WORKDIR /setup
+
+COPY . .
+
+RUN chmod 500 ssh*.sh
