@@ -1,4 +1,5 @@
-FROM alpine:3.14.2
+ARG ALPINE_VERSION=3.14.2
+FROM alpine:${ALPINE_VERSION}
 
 ARG BUILD_DATE
 LABEL org.label-schema.schema-version="1.0" \
