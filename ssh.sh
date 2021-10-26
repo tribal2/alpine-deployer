@@ -30,7 +30,7 @@ else
 fi
 
 # Setup SSH Agent with private key
-if [[ ! -f "$SSH_PRIVATE_KEY" ]] then
+if [[ ! -f "$SSH_PRIVATE_KEY" ]]; then
   echo 'No private key supplied. Exiting SSH setup';
   exit 0;
 fi
