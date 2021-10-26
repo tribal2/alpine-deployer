@@ -9,10 +9,10 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-url="https://github.com/tribal2/alpine-deployer" \
       maintainer="Ricardo Tribaldos <rtribaldos@barustudio.com>"
 
-RUN apk add --update --no-cache openssh rsync
+RUN apk add --update --no-cache openssh rsync \
+    && rm -rf /var/cache/apk/* \
+    && mkdir -p /root/.ssh \
+    && mkdir /setup
 
-WORKDIR /setup
-
-COPY . .
-
-RUN chmod 500 ssh*.sh
+COPY . /setup
+RUN chmod 500 /setup/*
