@@ -16,5 +16,8 @@ RUN apk add --update --no-cache openssh rsync \
     && mkdir -p /root/.ssh \
     && mkdir /setup
 
-COPY . /setup
+COPY ./ssh* /setup/
 RUN chmod 500 /setup/*
+
+COPY ./.profile /root/.profile
+ENV ENV="/root/.profile"
