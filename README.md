@@ -13,7 +13,24 @@ Lightweight Docker image (Alpine based) with SSH client and RSync installed for 
 |**SSH_PRIVATE_KEY_PASS** | Variable | The passphrase for the private key (if encrypted)     | If your private key is encrypted setup will fail          |
 
 ### Setup
-Run `./setup/ssh.sh` in your CD job to setup SSH with the environment variables.
+Source `/setup/ssh.sh` in your CD job to setup SSH with the environment variables.
+
+#### Example for Gitlab-CI:
+
+```yaml
+# gitlab-ci.yml
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  tags: [ docker ]
+  image: tribal2/alpine-deployer:latest
+  script:
+    - . /setup/ssh.sh
+    - ssh . "hostname && whoami"
+```
 
 ## 🚂 Execute commands in the deployment server
 ```bash

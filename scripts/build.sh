@@ -5,11 +5,18 @@ if [[ $(git rev-parse --abbrev-ref HEAD) != "main" ]]; then
     exit 1
 fi
 
-ALPINE_VERSION=3.14.2
-DATE=$(date -u +%y%m%d)
-TAG="${ALPINE_VERSION}-${DATE}"
-
 SCRIPT_DIR=$( dirname "${BASH_SOURCE[0]}" )
+
+VERSION=$( \
+  cat $SCRIPT_DIR/../.bumpversion.cfg \
+    | grep current_version \
+    | tr -d 'current_version = ' \
+)
+
+ALPINE_VERSION=3.14.2
+TAG="${VERSION}-alpine${ALPINE_VERSION}"
+
+echo "Building-${TAG}"
 
 docker build \
   --build-arg ALPINE_VERSION=${ALPINE_VERSION} \
