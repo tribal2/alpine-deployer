@@ -6,6 +6,7 @@ if [[ $(git rev-parse --abbrev-ref HEAD) != "main" ]]; then
 fi
 
 SCRIPT_DIR=$( dirname "${BASH_SOURCE[0]}" )
+source $SCRIPT_DIR/../.config.env
 
 TAG=$($SCRIPT_DIR/getTag.sh)
 
