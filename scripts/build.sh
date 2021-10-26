@@ -7,16 +7,9 @@ fi
 
 SCRIPT_DIR=$( dirname "${BASH_SOURCE[0]}" )
 
-VERSION=$( \
-  cat $SCRIPT_DIR/../.bumpversion.cfg \
-    | grep current_version \
-    | tr -d 'current_version = ' \
-)
+TAG=$($SCRIPT_DIR/getTag.sh)
 
-ALPINE_VERSION=3.14.2
-TAG="${VERSION}-alpine${ALPINE_VERSION}"
-
-echo "Building-${TAG}"
+echo "Building: ${TAG}"
 
 docker build \
   --build-arg ALPINE_VERSION=${ALPINE_VERSION} \
